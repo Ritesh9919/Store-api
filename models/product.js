@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     required:[true, 'name most be provided']
   },
   price:{
-    type:String,
+    type:Number,
     required:[true, 'price most be provided']
   },
   rating:{
@@ -19,15 +19,20 @@ const productSchema = new mongoose.Schema({
     default:false
   },
 
+  createdAt:{
+    type:Date,
+    default:Date.now()
+  },
+
   company:{
    type:String,
    enum:{
-    value:['ikea', 'liddy', 'caressa', 'marcos'],
-    message:'{value} is not supported'
+    values:['ikea', 'liddy', 'caressa', 'marcos'],
+    message:'{VALUE} is not supported',
    }
   }
 
-}, {timestamps:true});
+});
 
 
 const Product = mongoose.model('Product', productSchema);
